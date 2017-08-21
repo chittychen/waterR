@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>VITACOCO 补水计划</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="stylesheet" href="./css/global.css">
+    <style type="text/css">
+        @font-face { font-family: zj; src: url(./css/BEBAS__.TTF); }
+        .page{width:100%; height: 100%; position: absolute; top: 0; left: 0; right: 0; margin: auto;font-family: 'zj'}
+        .page .page-bg{width: 100%;position: absolute;top: 0;left:0}
+        .page-bg-bottom{width: 100%;position: absolute;top: 0;left:0}
+        .logo{position: absolute;top: 0;left:0;width: 2rem;height: 1.3rem;overflow: hidden}
+        .logo>img{width: 100%;position: absolute;}
+        .font{position: absolute;top: 27%;right: 6%;width: 3.5rem;}
+        .run{position: absolute; top: 27%; right: 6%; height: .8rem; overflow: hidden;float: left;width: 3.5rem;display: none}
+        .run .list{height: 100%;overflow: hidden;float: left;width: 100%}
+        .run li{height: 100%;overflow: hidden;float: left;width: 100%;}
+        .run img{float: left;width: 100%;}
+        .number{ position: absolute; top: 41%; right: 7%; color: #1566b3; font-size: .7rem; font-family: "microsoft yahei";height: 1.5rem; overflow: hidden; }
+        .number>span{font-size: .8rem;;font-family:"zj"}
+        .middle{width: 100%;position: relative;top: 0;left: 0;}
+        .img{ width: 100%; height: 39px; overflow: hidden; position: absolute; top: -12px;}
+        #water{width: 25%;background-color: #aaf7e4;height: 0;position: absolute;bottom:15%;left:23%;display: none}
+
+        .last{position: absolute;top: 0;left: 0;width: 100%;display: none}
+        #fragment_title{position: relative;top: 0;left: 0;width: 100%;opacity: 0}
+
+        .b-bg{position: absolute;top: 0;left: 0;width: 100%;overflow: hidden}
+        .animated {
+            -webkit-animation-duration: 2s;
+            animation-duration: 2s;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+        }
+        @-webkit-keyframes zoomOut {
+            from {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+                -webkit-transform: scale3d(.5, .5, .5);
+                transform: scale3d(.5, .5, .5);
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        @keyframes zoomOut {
+            from {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+                -webkit-transform: scale3d(.5, .5, .5);
+                transform: scale3d(.5, .5, .5);
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .zoomOut {
+            -webkit-animation-name: zoomOut;
+            animation-name: zoomOut;
+        }
+
+        @keyframes zoom {
+            0% {
+                opacity: 1;
+                -webkit-transform:scale(1.7,1.7);
+                transform: scale(1.7, 1.7);
+            }
+            50% {
+                opacity: 1;
+                -webkit-transform:scale(1,1);
+                transform: scale(1, 1);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform:scale(1.7,1.7);
+                transform: scale(1.7, 1.7);
+            }
+        }
+
+        @-webkit-keyframes zoom{
+            0% {
+                opacity: 1;
+                -webkit-transform:scale(1.7,1.7);
+                transform: scale(1.7, 1.7);
+            }
+            50% {
+                opacity: 1;
+                -webkit-transform:scale(1,1);
+                transform: scale(1, 1);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform:scale(1.7,1.7);
+                transform: scale(1.7, 1.7);
+            }
+        }
+
+        .zoom {
+            -webkit-animation:zoom 2s infinite ease;
+            animation:zoom 2s infinite ease;
+        }
+
+        .litter{
+            position: absolute;top: 3%;left: 0;width: 77%;
+            opacity: 0;
+        }
+
+        .height{
+            -webkit-animation-name: height;
+            animation-name: height;
+            -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes height {
+            0% {
+                height: 1.5rem;
+            }
+            10%{
+                height: 1.35rem;
+            }
+            20%{
+                height: 1.2rem;
+            }
+            30%{
+                height: 1.05rem;
+            }
+            40%{
+                height: .9rem;
+            }
+            50%{
+                height: 0.75rem;
+            }
+            60%{
+                height: .6rem;
+            }
+            70%{
+                height: .45rem;
+            }
+            80%{
+                height: 0.3rem;
+            }
+            90%{
+                height: 0.15rem;
+            }
+            100% {
+                height: 0;
+                display: none;
+            }
+        }
+
+        .logo-height{
+            -webkit-animation-name: logo-height;
+            animation-name: logo-height;
+            -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes logo-height {
+            0% {
+                height: 1.1rem;
+            }
+            50% {
+                height: 0.5rem;
+            }
+            100% {
+                height: 0;
+                display: none;
+            }
+        }
+
+
+        .run-height{
+            -webkit-animation-name: logo-height;
+            animation-name: logo-height;
+            -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes run-height {
+            0% {
+                height: .8rem;
+            }
+            50% {
+                height: .4rem;
+            }
+            100% {
+                height: 0;
+                display: none;
+            }
+        }
+
+        .last-show{
+            position: absolute;
+            width: 3.5rem;
+            top: 20%;
+            right: 6%;
+            height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        .last-show>img{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .lastShow{
+            -webkit-animation-name: lastShow;
+            animation-name: lastShow;
+            -webkit-animation-duration: .5s;
+            animation-duration: .5s;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+            opacity: 1;
+        }
+
+        @keyframes lastShow {
+            0% {
+                height: 0;
+            }
+            10% {
+                height: .1rem;
+            }
+            20% {
+                 height: .3rem;
+             }
+            25% {
+                height: .5rem;
+            }
+            50% {
+                height: 1rem;
+            }
+            75% {
+                height: 1.5rem;
+            }
+            100% {
+                height: 2rem;
+            }
+        }
+
+        .last-show-1{
+            position: absolute;
+            right: 12%;
+            top: 42%;
+            width: 2rem;
+        }
+
+        .last-show-1>img{
+            width: 100%;
+            opacity: 0;
+        }
+
+
+        @keyframes zoomIn {
+            0% {
+                opacity: 1;
+                -webkit-transform:scale(.4);
+                transform: scale(.4);
+            }
+            50% {
+                opacity: 1;
+                -webkit-transform:scale(.1);
+                transform: scale(.1);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform:scale(.4);
+                transform: scale(.4);
+            }
+        }
+
+        @-webkit-keyframes zoomIn{
+            0% {
+                opacity: 1;
+                -webkit-transform:scale(.4);
+                transform: scale(.4);
+            }
+            50% {
+                opacity: 1;
+                -webkit-transform:scale(.1);
+                transform: scale(.1);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform:scale(.4);
+                transform: scale(.4);
+            }
+        }
+
+        .zoomIn {
+            opacity: 1;
+            -webkit-animation:zoom 21s infinite ease;
+            animation:zoom 2s infinite ease;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <img src="./images/bottom.jpg" class="page-bg-bottom">
+    <div class="middle">
+        <div id="water">
+            <img src="./images/w.gif?v=123" class="img">
+        </div>
+
+    </div>
+    <img src="./images/top.png?v=123" class="page-bg">
+    <div class="logo">
+        <img src="./images/logo.png">
+    </div>
+    <img src="./images/font.png" class="font">
+    <div class="run">
+        <ul class="list">
+            <li>
+                <img src="./images/f-1.png">
+                <!--水力全开  任性加速！-->
+            </li>
+            <li>
+                <img src="./images/f-2.png">
+                <!--快一点  再快一点-->
+            </li>
+            <li>
+                <img src="./images/f-3.png">
+                <!--快补水ING 友谊小船不在翻船-->
+            </li>
+            <li>
+                <img src="./images/f-4.png">
+                <!--新时代的大力水手！-->
+            </li>
+            <li>
+                <img src="./images/f-5.png">
+                <!--GO GO GO!-->
+            </li>
+        </ul>
+    </div>
+    <div class="number">
+        <span>000000</span>ml
+    </div>
+    <div class="last-show">
+        <img src="./images/show-1.png">
+    </div>
+    <div class="last-show-1 ">
+        <img src="./images/show-2.png" >
+    </div>
+</div>
+<div class="b-bg">
+    <img src="./images/g.png" class="litter" >
+</div>
+<img src="./images/p.png" class="last">
+<!--<div id="fragment_title"></div>-->
+
+<script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery.fragmentFly.js"></script>
+<script>
+
+    var storage = window.localStorage;
+    var w1 = $(window).width();
+    var imgH = (w1/4)*3;
+    function autoScroll(obj){
+        $(obj).find(".list").animate({
+            marginTop : "-99px"
+        },400,function(){
+            $(this).css({marginTop : "0px"}).find("li:first").appendTo(this);
+        })
+    }
+    var number;
+    var i=n=0;
+
+
+    function  numberFunction() {
+        number = setInterval(function () {
+            var el = dom("water");
+            var computedStyle = document.defaultView.getComputedStyle( el, null );
+            var h = computedStyle.getPropertyValue("height").replace('px','');
+            var height = Math.ceil(parseInt(h)/imgH * 100);
+            i =1+i;
+          //  n = parseInt(i*10000)+parseInt(Math.random()*10000,10);
+            n = parseInt((100000 / 61) * height);
+            if(n <= 100000){
+                var k = (Array(6).join('0') + n).slice(-6);
+                $('.number span').html(k);
+            }else{
+                $('.number span').html(100000);
+                clearInterval(number);
+            }
+        },1000);
+    }
+
+    var dom = function(s){
+        return document.getElementById(s)
+    };
+
+    dom.cssName = function (name){
+        var prefixes = ['', '-ms-','-moz-', '-webkit-', '-khtml-', '-o-'],
+            rcap = /-([a-z])/g,capfn = function($0,$1){
+                return $1.toUpperCase();
+            };
+        dom.cssName = function(name, target, test){
+            target = target || document.documentElement.style;
+            for (var i=0, l=prefixes.length; i < l; i++) {
+                test = (prefixes[i] + name).replace(rcap,capfn);
+                if(test in target){
+                    return test;
+                }
+            }
+            return null;
+        };
+        return dom.cssName(name);
+    };
+    //结束
+    dom("water").addEventListener("transitionend", function(){
+        var el = dom("water");
+        var computedStyle = document.defaultView.getComputedStyle( el, null );
+        var h = computedStyle.getPropertyValue("height").replace('px','');
+        var height = Math.ceil(parseInt(h)/imgH * 100);
+        if(height >= 61){
+            var cookies = JSON.parse(storage.getItem("data"));
+            cookies.status = 4;
+            storage.setItem("data",JSON.stringify(cookies));
+            clearInterval(number);
+            $('.number span').html(100000);
+            $('.litter').addClass('zoom');
+            $('.last').fadeIn(3000);
+            setTimeout(function () {
+                $('.number').addClass('height');
+                $('.logo').addClass('logo-height');
+            },4000);
+            setTimeout(function () {
+                $('.run').addClass('run-height');
+            },4500);
+            setTimeout(function () {
+                $('.last-show').addClass('lastShow');
+            },5000);
+            setTimeout(function () {
+                $('.last-show-1>img').addClass('animated zoomIn');
+            },5500);
+        }
+    }, false);
+
+    function w(){
+        var el = dom("water"),start,
+            css3transition = dom.cssName("transition");
+        el.style[css3transition] = "all 20s ease-in";
+        setTimeout(function(){
+            start = new Date;
+            el.style.height = "61%";
+        },0);
+    }
+    var k=0;
+    function refreshData() {
+        var cookies = JSON.parse(storage.getItem("data"));
+        k++;
+        if(cookies.status >0 && cookies.status != 4){
+            if(k%25 ==0){
+                autoScroll(".run");
+            }
+        }
+        if (cookies.status === 1 ){
+            $('#water').css('display','block');
+            w();
+            $('.font').css('display','none');
+            $('.run').css('display','block');
+            numberFunction();
+        }
+        else if (cookies.status === 2 ){
+            var el = dom("water"),start,css3transition = dom.cssName("transition");
+            clearInterval(number);
+            var computedStyle = document.defaultView.getComputedStyle( el, null );
+            el.style.height = computedStyle.getPropertyValue( "height" );
+            var elapsed = new Date - start;
+            var old = el.style[css3transition];
+            el.style[css3transition] = old.replace(/\d+ms/g,function(a){
+                return (parseFloat(a) - elapsed) +"ms"
+            });
+        }
+        else if (cookies.status === 3 ){
+            var el = dom("water");
+            el.style.height = "61%";
+            numberFunction();
+        }else if(cookies.status === 4){
+            clearInterval(number);
+//            $('.run').css('display','none');
+//            $('.font').css('display','block');
+        }else{
+            clearInterval(number);
+            $('#water').css('display','none');
+            $('#water').css('height','0');
+            $('.run').css('display','none');
+            $('.font').css('display','block');
+        }
+    }
+
+
+    setInterval(refreshData, 100);
+
+
+    $(window).resize(autoHeight);
+    function autoHeight(){
+        var w = $(window).width();
+        var h = w*.75;
+        var imgH = (w/4)*3;
+        $('.page-bg-bottom').css('height',imgH+'px');
+
+        $('.page-bg').css('height',imgH+'px');
+        $('.middle').css('height',imgH+'px');
+        $('#fragment_title').css({'width':w+'px','height':imgH+'px'});
+        $('.last').css('height',imgH+'px');
+        $('.litter').css('height',imgH+'px');
+        $('.b-bg').css('height',imgH+'px');
+        $(".page").height(h);
+        $("body,html").css("font-size",w/8+"px")
+    }
+    autoHeight();
+</script>
+</body>
+</html>

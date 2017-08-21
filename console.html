@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>VITACOCO 补水计划</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <style type="text/css">
+        #rank-warp{ width:100%; height: 100%; position: absolute; top: 0; left: 0; right: 0; margin: auto;}
+        #rank-warp .topic{ width: 200px; margin: 0 auto; padding-top: 90px; position: relative;}
+        #rank-warp .topic p{ position: absolute; bottom: 8px; right: 30px; z-index: 10; color: #fdd000; font-size: 24px;}
+        #rank-warp .topic input{ height: 30px; width: 80px; text-align: center;font-size:18px; font-family:"microsoft yahei";}
+
+        #rank-warp .cont{width: 400px; margin: 0 auto; padding-top: 30px; position: relative; font-size: 24px; color: #231815; font-family:"microsoft yahei";}
+        #rank-warp .cont table{ width: 100%; }
+        #rank-warp .cont table td{ height: 46px; line-height: 46px; background-color:#fdd000; border: 4px solid rgba(0,0,0,0.5);  text-align: center; }
+
+        #rank-warp .cont table input{ height: 46px; width: 100%; background: rgba(0,0,0,0); outline: none; border:none; font-size: 24px; text-align: center; font-family:"microsoft yahei";}
+
+        .buttons {background:#fdd000;color:#231815;display:inline-block;padding:0.05rem 0.2rem; border-radius:5px;margin-right:0.1rem; font-size: 18px; cursor:pointer;}
+        .times{ width: 300px; padding:20px 0; margin: 0 auto;}
+    </style>
+</head>
+<body>
+<div id="rank-warp">
+    <div class="topic">
+
+    </div>
+    <div class="cont">
+        <span class="buttons" id="start" data-status="1">开始</span>
+        <span class="buttons" id="pause" data-status="2">中断</span>
+        <span class="buttons" id="resume" data-status="3">继续</span>
+    </div>
+
+</div>
+<script type="text/javascript" src="./js/jquery-2.1.1.min.js"></script>
+<script>
+    $(function() {
+        //数据初始化
+        var storage = window.localStorage;
+
+
+        var gameData = {
+            "status":0
+        };
+
+        storage.setItem("data",JSON.stringify(gameData));
+
+        var dataAction = {
+            setStatus:function(state){
+                gameData.status = state;
+            },
+            setReset:function(state){
+                gameData.isreset = state;
+            },
+            saveData:function(){
+                storage.setItem("data",JSON.stringify(gameData));
+            }
+        };
+
+        $("#start").on("click",function(){
+            var $this = $(this);
+            var isStop = $this.attr("data-status");
+            $this.css('background','red');
+            if (isStop){
+                dataAction.setStatus(1);
+//                setTimeout(function(){
+//                    dataAction.setStatus(0);
+//                    dataAction.saveData();
+//                },100);
+                setTimeout(function(){
+                    dataAction.setStatus(1);
+                    dataAction.saveData();
+                },100)
+            }
+            dataAction.setReset(false);
+            dataAction.saveData();
+        });
+
+        $("#resume").on("click",function(){
+            var $this = $(this);
+            var isReset = $this.attr("data-status");
+            var c = setColor();
+            $this.css('background',c);
+            if (isReset){
+                dataAction.setStatus(3);
+                dataAction.saveData();
+            }
+            else{
+                console.info(2)
+            }
+
+        });
+
+        $("#pause").on("click",function(){
+            var $this = $(this);
+            var c = setColor();
+            $this.css('background',c);
+            var isReset = $this.attr("data-status");
+            if (isReset){
+                dataAction.setStatus(2);
+                dataAction.saveData();
+            }
+            else{
+                console.info(2)
+            }
+
+        });
+
+
+        function setColor() {
+            var c = '#';
+            var cArray = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+            for(var i = 0; i < 6;i++)
+            {
+                var cIndex = Math.round(Math.random()*15);
+                c += cArray[cIndex];
+            }
+            return c;
+        }
+    });
+</script>
+</body>
+</html>
